@@ -1,0 +1,23 @@
+<h1>Fake News Management System</h1>
+
+<%= form_tag articles_path, method: :get, class: "search-form" do %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search articles" %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+<h2>Recent News</h2>
+  <% if @articles.blank? %>
+    <p>There are no articles currently in the system.</p>
+  <% else %>
+    <p>These are the current articles in our system</p>
+    <ul id="articles">
+      <% @articles.each do |article| %>
+        <li>
+          <strong>Title:</strong> <%= article.title %><br>
+          <strong>Body:</strong> <%= article.body %><br>
+          <%= link_to "Read More", article_path(article) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>

@@ -1,0 +1,28 @@
+<% if @articles.blank? %>
+  <p>There are no articles currently in the system.</p>
+<% else %>
+  <p>These are the current articles in our system</p>
+  <ul id="articles">
+    <% if @articles.present? %>
+      <% @articles.each do |category| %>
+        <h2><%= category.category %></h2>
+        <ul>
+          <% @articles.where(category: category).each do |article| %>
+            <li>
+              <strong>Title:</strong> <%= article.title %><br>
+              <strong>Body:</strong> <%= article.body %><br>
+              <%= link_to "Read More", article_path(article) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% else %>
+      <p>No categories found.</p>
+    <% end %>
+
+
+  </ul>
+
+<% end %>
+
+

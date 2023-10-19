@@ -1,0 +1,18 @@
+<% if @articles.blank? %>
+  <p>There are no articles currently in the system.</p>
+<% else %>
+  <p>These are the current articles in our system</p>
+  <ul id="articles">
+    <% @articles.each do |article| %>
+      <li>
+        <strong>Title:</strong> <%= article.title %><br>
+        <strong>Body:</strong> <%= article.body%><br>
+        <strong>Category:</strong> <%= article.category %><br>
+        <%= link_to "show", {:action => 'show', :id => article.id} %> |
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<p>
+  <%= link_to "Add New Article", {:action => 'new' } %>
+</p>
